@@ -2,7 +2,7 @@ name: Deploy Chart
 
 on:
   release:
-    types: [created]
+    types: [released]
     
 jobs:
   deployment:
