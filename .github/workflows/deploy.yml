@@ -1,0 +1,24 @@
+on:
+  release:
+    types: [published]
+    
+jobs:
+  deployment:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+    - uses: jungwinter/split@v2
+      id: split
+      with:
+        msg: ${{ github.event.release.name }}
+        separator: '-'
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'hello-world'
+        namespace: 'hello-world'
+        chart-version: ${{ steps.split.outputs._2 }}
+        chart: 'hello-world'
+        token: '${{ github.token }}'
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
