@@ -18,8 +18,8 @@ RUN mkdir -v /usr/src/.venv
 
 COPY --from=builder /app/.venv/ /app/.venv/
 
-WORKDIR /app/
+WORKDIR /app
 
-ADD app.py /app/
+COPY hello_world ./hello_world
 
-CMD ["/app/.venv/bin/gunicorn", "-b 0.0.0.0:80", "app:app"]
+CMD ["/app/.venv/bin/gunicorn", "-b 0.0.0.0:80", "hello_world.app:app"]
