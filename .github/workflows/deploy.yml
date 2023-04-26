@@ -2,7 +2,6 @@ name: Deploy Chart
 
 on: workflow_dispatch
 
-# Environment variables available to all jobs and steps in this workflow
 env:
   GKE_PROJECT: combocurve-exercise
   GKE_REGION: us-central1
@@ -38,14 +37,16 @@ jobs:
         version: 'v3.11.3' # default is latest (stable)
       id: install-helm
 
-    # Get credentials
     - name: Get credentials
       run: |
         gcloud container clusters get-credentials $GKE_CLUSTER \
           --region $GKE_REGION \
           --project $GKE_PROJECT
         
-    # Deploy Helm release to cluster
+    - name: Add Helm repository
+      run: |
+        helm repo add combocurve https://zjpiazza.github.io/combocurve-devops-exercise/
+        
     - name: Deploy
       run: |
         helm -n $NAMESPACE upgrade $RELEASE_NAME $CHART_NAME --wait
