@@ -31,9 +31,7 @@ jobs:
           pipenv sync
 
       - name: Run tests
-        run: |
-          pipenv shell
-          coverage run -m pytest
+        run: pipenv run coverage run -m pytest
 
       - name: Coverage comment
         id: coverage_comment
