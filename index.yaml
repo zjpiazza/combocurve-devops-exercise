@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   hello-world:
   - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2023-04-26T12:39:09.242976124Z"
+    description: A Helm chart for Kubernetes
+    digest: 30da519eda575b5657566d76403b2c2846725cf3c435c4ccdddff24b3730d3d7
+    name: hello-world
+    type: application
+    urls:
+    - https://github.com/zjpiazza/combocurve-devops-exercise/releases/download/hello-world-1.1.0/hello-world-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: 1.0.1
     created: "2023-04-26T03:28:43.529458383Z"
     description: A Helm chart for Kubernetes
@@ -51,4 +61,4 @@ entries:
     urls:
     - https://github.com/zjpiazza/combocurve-devops-exercise/releases/download/hello-world-0.1.0/hello-world-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-26T03:28:43.529488883Z"
+generated: "2023-04-26T12:39:09.242994724Z"
