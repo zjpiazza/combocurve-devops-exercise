@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
+      uses: 'deliverybot/helm@v1.5.0'
       with:
         release: 'hello-world'
         namespace: 'hello-world'
