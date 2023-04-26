@@ -51,5 +51,3 @@ jobs:
     - name: Deploy
       run: |
         helm -n $NAMESPACE upgrade $RELEASE_NAME $CHART_NAME --wait
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
-        kubectl get services -o wide
