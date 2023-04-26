@@ -1,8 +1,11 @@
 # .github/workflows/ci.yml
-name: pr
+name: ci
 
 on:
   pull_request:
+  push:
+    branches:
+      - 'main'
 
 jobs:
   test:
