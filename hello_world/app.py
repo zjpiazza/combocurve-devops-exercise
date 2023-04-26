@@ -8,4 +8,8 @@ COUNT = 0
 def hello():
     global COUNT
     COUNT += 1
-    return f"Hello World!!! I have been called {COUNT} times."
+    
+    return {
+        "message": "Hello World!!!",
+        "invocation_count": COUNT
+    }
