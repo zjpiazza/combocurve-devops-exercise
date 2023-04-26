@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -11,7 +11,8 @@ def hello():
     
     return {
         "message": "Hello World!",
-        "invocation_count": COUNT
+        "invocation_count": COUNT,
+        "ip_address": request.remote_addr
     }
 
 @app.route("/inverse")
