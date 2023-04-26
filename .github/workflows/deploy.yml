@@ -2,18 +2,52 @@ name: Deploy Chart
 
 on: workflow_dispatch
 
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GKE_PROJECT: combocurve-exercise
+  GKE_REGION: us-central1
+  GKE_CLUSTER: combocurve
+  NAMESPACE: hello-world
+  RELEASE_NAME: hello-world
+  CHART_NAME: combocurve/hello-world
+  
 jobs:
-  deployment:
-    runs-on: 'ubuntu-latest'
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1.5.0'
+
+    - name: Checkout
+      uses: actions/checkout@master
+
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
       with:
-        release: 'hello-world'
-        namespace: 'hello-world'
-        chart-version: 0.2.0
-        chart: 'hello-world'
-        token: '${{ github.token }}'
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
+
+    - uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.27.1' # default is latest stable
+      id: install-kubectl
+      
+    - uses: azure/setup-helm@v3
+      with:
+        version: 'v3.11.3' # default is latest (stable)
+      id: install-helm
+
+    # Get credentials
+    - name: Get credentials
+      run: |
+        gcloud container clusters get-credentials $GKE_CLUSTER \
+          --region $GKE_REGION \
+          --project $GKE_PROJECT
+        
+    # Deploy Helm release to cluster
+    - name: Deploy
+      run: |
+        helm -n $NAMESPACE upgrade $RELEASE_NAME $CHART_NAME --wait
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl get services -o wide
