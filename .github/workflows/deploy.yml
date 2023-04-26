@@ -9,6 +9,7 @@ env:
   NAMESPACE: hello-world
   RELEASE_NAME: hello-world
   CHART_NAME: combocurve/hello-world
+  CHART_VERSION: 0.2.0
   
 jobs:
   deploy:
@@ -50,4 +51,4 @@ jobs:
         
     - name: Deploy
       run: |
-        helm -n $NAMESPACE upgrade $RELEASE_NAME $CHART_NAME --wait
+        helm -n $NAMESPACE upgrade $RELEASE_NAME $CHART_NAME --version $CHART_VERSION --wait
