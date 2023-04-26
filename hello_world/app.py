@@ -6,5 +6,6 @@ COUNT = 0
 
 @app.route("/")
 def hello():
+    global COUNT
     COUNT += 1
     return f"Hello World!!! I have been called {COUNT} times."
