@@ -10,6 +10,6 @@ def hello():
 #     COUNT += 1
     
     return {
-        "message": "Hello World!!!",
+        "message": "Hello World!",
         "invocation_count": COUNT
     }
