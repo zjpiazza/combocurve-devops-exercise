@@ -1,5 +1,11 @@
 # Kubernetes Exercise
 
+[![Build and Push](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/docker-publish.yml)
+
+[![Release Charts](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/publish-charts.yml/badge.svg)](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/publish-charts.yml)
+
+[![Deploy Chart](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/deploy.yml/badge.svg)](https://github.com/zjpiazza/combocurve-devops-exercise/actions/workflows/deploy.yml)
+
 ## Intro
 
 Thank you for your interest and participation in our recruitment process for our DevOps Engineer position, to continue with the process we ask you to take the following technical test and share your result with us.
