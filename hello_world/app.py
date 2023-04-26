@@ -14,6 +14,6 @@ def hello():
         "invocation_count": COUNT
     }
 
-@app.route("/")
+@app.route("/inverse")
 def hello_inverse():
     return "World, Hello!"
