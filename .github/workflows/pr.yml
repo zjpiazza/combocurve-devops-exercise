@@ -31,7 +31,9 @@ jobs:
           pipenv sync
 
       - name: Run tests
-        run: coverage run -m pytest  # This is the part where you put your own test command
+        run: |
+          pipenv shell
+          coverage run -m pytest
 
       - name: Coverage comment
         id: coverage_comment
